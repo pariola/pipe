@@ -43,3 +43,10 @@ chmod +x ./push.sh
 - Create a webhook with your fav version control provider {Github, Bitbucket, etc..} then point it to your URL/IP with your specified port
   - https://confluence.atlassian.com/bitbucket/manage-webhooks-735643732.html
   - https://developer.github.com/webhooks/
+
+
+## NOTE
+- You can aswell add this line to the end of your crontab file in `/etc/crontab` so the command is automatically started on system reboot
+```bash
+@reboot root cd ~ && ./main -script="./push.sh" -port=3000
+```
