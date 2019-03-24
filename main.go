@@ -21,12 +21,17 @@ func execute() {
 	port := flag.String("port", "3000", "a string")
 	flag.Parse()
 
-	http.HandleFunc("/push", func(w http.ResponseWriter, _ *http.Request) {
-		fmt.Fprint(w, "OK")
-		fmt.Println("Push Recieved")
+	http.HandleFunc("/push", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != "POST" {
+			fmt.Fprint(w, "OK")
+			fmt.Println("Push Recieved")
 
-		out, _ := exec.Command(*scriptPath).Output()
-		fmt.Println(string(out))
+			out, _ := exec.Command(*scriptPath).Output()
+			fmt.Println(string(out))
+		} else {
+			fmt.Println("Forbidden")
+		}
+
 	})
 
 	fmt.Println("Server starting!!")
