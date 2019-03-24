@@ -22,7 +22,7 @@ func execute() {
 	flag.Parse()
 
 	http.HandleFunc("/push", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != "POST" {
+		if r.Method == "POST" {
 			fmt.Fprint(w, "OK")
 			fmt.Println("Push Recieved")
 
